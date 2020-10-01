@@ -1,0 +1,16 @@
+{
+  "name": "back-end-meli",
+  "version": "1.0.0",
+  "description": "This is a project test for MeLi",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon src/app.js"
+  },
+  "author": "Andres Collazos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.4"
+  }
+}
