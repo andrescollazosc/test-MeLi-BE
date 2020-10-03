@@ -65,20 +65,22 @@ module.exports = {
   },
 
   findCaegories: function (data) {
-    try {
-      const firstCategory = data.filters[0].values[0].path_from_root[0];
-      const dataArray = data.available_filters.find((x) => x.id === "category")
-        .values;
+    const firstCategory = data.filters[0].values[0].path_from_root[0];
+    let dataArray = [];
 
-      dataArray.push({
-        id: firstCategory.id,
-        name: firstCategory.name,
-        results: 0,
-      });
-      
-      return dataArray;
+    try {
+      dataArray = data.available_filters.find((x) => x.id === "category")
+        .values;
     } catch (error) {
-      return [];
+      dataArray = [];
     }
+
+    dataArray.unshift({
+      id: firstCategory.id,
+      name: firstCategory.name,
+      results: 0,
+    });
+
+    return dataArray;
   },
 };
