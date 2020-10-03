@@ -25,19 +25,20 @@ module.exports = {
     };
   },
 
-  newStructureApiProducts: function (array) {
+  newStructureApiProducts: function (array, categories) {
     const maximun_elements = 4;
-    const length = (array.length) > maximun_elements ? maximun_elements : array.length;
-    let newArray = [];
+    const length =
+      array.length > maximun_elements ? maximun_elements : array.length;
+    let newArray = { result: [], categories: categories };
 
     if (array.length === 0) {
       return [];
     }
 
-    for (let index = 0; index < length  ; index++) {
+    for (let index = 0; index < length; index++) {
       const element = array[index];
 
-      newArray.push({
+      newArray.result.push({
         author: {
           name: !element.seller.eshop ? "" : element.seller.eshop.nick_name,
           lastname: "",
@@ -61,5 +62,13 @@ module.exports = {
     }
 
     return newArray;
+  },
+
+  findCaegories: function (data) {
+    try {
+      return data.available_filters.find((x) => x.id === "category").values;
+    } catch (error) {
+      return [];
+    }
   },
 };

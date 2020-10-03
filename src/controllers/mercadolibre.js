@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fetch = require("node-fetch");
+const { findCaegories } = require("../functions/structure.functions");
 const functions = require('../functions/structure.functions');
 
 const MAIN_URL = "https://api.mercadolibre.com";
@@ -13,7 +14,7 @@ router.get("/api/products/:search", async (req, res) => {
     const response = await fetch(API_URL);
     const data = await response.json();
 
-    const newResultApi = functions.newStructureApiProducts(data.results);
+    const newResultApi = functions.newStructureApiProducts(data.results, findCaegories(data));
 
     res.json(newResultApi);
   } catch (error) {
