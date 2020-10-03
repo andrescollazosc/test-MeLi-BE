@@ -66,7 +66,17 @@ module.exports = {
 
   findCaegories: function (data) {
     try {
-      return data.available_filters.find((x) => x.id === "category").values;
+      const firstCategory = data.filters[0].values[0].path_from_root[0];
+      const dataArray = data.available_filters.find((x) => x.id === "category")
+        .values;
+
+      dataArray.push({
+        id: firstCategory.id,
+        name: firstCategory.name,
+        results: 0,
+      });
+      
+      return dataArray;
     } catch (error) {
       return [];
     }
