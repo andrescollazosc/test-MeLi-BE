@@ -22,23 +22,6 @@ router.get("/api/products/:search", async (req, res) => {
   }
 });
 
-//
-router.get("/api/products_1/:search", async (req, res) => {
-  const search = req.params.search;
-
-  try {
-    const API_URL = `${MAIN_URL}/sites/MLA/search?q=${search}`;
-    const response = await fetch(API_URL);
-    const data = await response.json();
-
-    const newResultApi = functions.newStructureApiProducts(data.results, findCaegories(data));
-
-    res.json(data);
-  } catch (error) {
-    res.json(error);
-  }
-});
-
 router.get("/api/product/:id", async (req, res) => {
   const id = req.params.id;
 
