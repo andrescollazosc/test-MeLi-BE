@@ -49,7 +49,7 @@ module.exports = {
             title: element.title,
             price: {
               currency: element.currency_id,
-              amount: element.installments.amount,
+              amount: element.price,
               decimals: element.installments.rate,
             },
             picture: element.thumbnail,
